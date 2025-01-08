@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #333;
+            margin-top: 50px;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .game {
+            display: none;
+            margin-top: 20px;
+        }
+        .question {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        .score {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #333;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .submit-btn {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body> 
+    <h1>Start Game</h1>
+    <div class="container">
+        <button class="button" onclick="startGame()">Welcome to Infinite Game</button>
+        <div class="game">
+            <div class="question" id="question"></div>
+            <input type="number" id="answer" placeholder="Your answer">
+            <button class="submit-btn" onclick="checkAnswer()">Submit</button>
+            <div class="score" id="score"></div>
+        </div>
+    </div>
+
+    <script>
+        var i = 1;
+        var score = 0;
+        
+        function startGame() {
+            document.querySelector('.button').style.display = 'none';
+            document.querySelector('.game').style.display = 'block';
+            updateQuestion();
+        }
+
+        function updateQuestion() {
+            document.getElementById('question').innerText = ` ${i} * ${i} kitna hota hai?`;
+            document.getElementById('answer').value = '';
+        }
+
+        function checkAnswer() {
+            let userAnswer = parseInt(document.getElementById('answer').value);
+
+            if (userAnswer === i * i) {
+                alert("7 crore.");
+                score += 7;
+            } else {
+                alert("-7 crore.");
+                score -= 7;
+            }
+
+            document.getElementById('score').innerText = `aapki dhanrashi ${score} crore hai.`;
+            i++;
+            updateQuestion();
+        }
+    </script>
+</body>
+</html>
